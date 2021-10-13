@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link rel="stylesheet" href="D:\Rails Training\weatherApp\fontawesome-free-6.0.0-beta2-web/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="wrapper">
+        <div class="container1">
+            <button class="bar"><i class="fa-solid fa-bars"></i></button>
+            <div><p>Dự báo<p></div> 
+            <input type="text" placeholder="Nhập vào tên thành phố" class="search-input">
+            <button class="search "><i class="fas fa-search"></i></button>
+            <button class="refresh"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+            <div class="clr"></div>
+        </div>
+        <div class="container2">
+            <p class="location">Cần Thơ, Việt Nam</p>
+            <div class="content1">
+                <div class="tem">
+                <div class="icon"><i class="fa-regular fa-sun"></i></div>
+                <div class="temperature">32°C</div>
+                <div class="swap_temperature">
+                    <div class="tem_c">Độ C</div>
+                    <div class="tem_f">Độ F</div>
+                </div>
+                <div class="clr"></div>
+            </div>
+            </div>
+            <div class="weather">Có nắng</div>
+            <div class="text">
+                <div class="text1">
+                    <p class="tempe">Dễ chịu 42°C</p>
+                    <p class="press">Áp kế 10007.00mb</p>
+                </div>
+                <div class="text2">
+                    <p class="wind-power">Gió <i id="locat" class="fa-solid fa-location-arrow"></i> 8 km/giờ  </p>
+                    <p class="humidity">Độ ẩm 75%</p>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <div class="container3">
+            <div class="title">Hằng ngày</div>
+            <div class="content2">
+                <div class="content2-1 test">
+                     <div class="day">T2 11</div>
+                     <div class="icon-content2"><i class="fa-regular fa-sun"></i></div>
+                     <div class="temperature-content2"> 
+                         <div class="temp_c">32°C</div>
+                         <div class="temp_c2">28°C</div>
+                         <div class="clr"></div>
+                     </div>
+                     <div class="weather-content2">Có nắng</div>
+                </div>
+                <div class="content2-2 test">
+                    <div class="day">T3 12</div>
+                    <div class="icon-content2"><i class="fa-regular fa-sun"></i></div>
+                    <div class="temperature-content2"> 
+                        <div class="temp_c">28°C</div>
+                        <div class="temp_c2">26°C</div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="weather-content2">Nhiều mây</div>
+               </div>
+               <div class="content2-3 test">
+                <div class="day">T4 13</div>
+                <div class="icon-content2"><i class="fa-regular fa-sun"></i></div>
+                <div class="temperature-content2"> 
+                    <div class="temp_c">33°C</div>
+                    <div class="temp_c2">23°C</div>
+                    <div class="clr"></div>
+                </div>
+                <div class="weather-content2">Có nắng</div>
+                </div>
+                <div class="content2-4 test">
+                    <div class="day">T5 14</div>
+                    <div class="icon-content2"><i class="fa-regular fa-sun"></i></div>
+                    <div class="temperature-content2"> 
+                        <div class="temp_c">25°C</div>
+                        <div class="temp_c2">23°C</div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="weather-content2">Có mưa</div>
+               </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</script>
+</html>

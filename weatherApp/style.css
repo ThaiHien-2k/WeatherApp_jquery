@@ -1,0 +1,255 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+
+#wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 600px;
+    width: 400px;
+    background: linear-gradient(225deg, rgb(135, 163, 192) 0%, rgb(57, 120, 197) 25%,rgb(135, 163, 192) 265%);
+}
+
+.container1{
+    /* display: block; */
+    height: 10%;
+    width: 100%;
+    border: none;
+    margin: unset;
+    background: linear-gradient(90deg, rgb(91, 132, 175) 0%, rgba(48,91,142,1) 35%);
+}
+
+.container1 p,.bar,.refresh,.search-input,.search{
+    float: left;
+}
+
+
+.bar{
+    width: 15%;
+    height: 100%;
+    background-color: #0b57a5;
+    font-size: 30px;
+    color: white;
+    border: unset;
+}
+
+.container1 p{
+    font-weight: bold;
+    margin-top: 17px;
+    margin-left: 5px;
+
+    font-size: 23px;
+    color: white;
+}
+
+.search{
+    margin-top: 1.5px;
+    font-size: 20px;
+    width: 10%;
+    height: 95%;
+    background-color: unset;
+    border: none;
+    color: white;
+}
+
+.search :hover{
+    opacity: 0.5;
+
+}
+
+.refresh :hover{
+    opacity: 0.5;
+
+}
+
+.bar :hover{
+    opacity: 0.5;
+
+}
+
+.search-input{
+    visibility: hidden;
+    width: 42%;
+    height: 65%;
+    text-align: center;
+    margin-top: 11px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.refresh{
+    margin-top: 1.5px;
+    font-size: 20px;
+    width: 10%;
+    height: 95%;
+    color: white;
+    background-color: unset;
+    border: none;
+}
+
+
+
+
+.container2{
+    height: 50%;
+    width: 100%;
+   
+}
+
+.location{
+    text-align: center;
+    padding-top: 20px;
+    color: white;
+    font-size: 25px;
+}
+
+.temperature{
+    color: white;
+    font-size: 90px;
+}
+
+.icon,.temperature,.swap_temperature{
+    float: left;
+}
+
+.tem{
+
+    height: 70%;
+    margin-left: 10%;
+}
+
+.icon{
+    font-size: 50px;
+    height: 100%;
+    width: 20%;
+    justify-content: center;
+    padding: 5px;
+    margin-top: 20px;
+    color: yellow;
+}
+
+.swap_temperature{
+    display: block;
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.tem_c{
+    color: white;
+}
+
+.tem_f{
+    color: white;
+    opacity: 0.6;
+}
+
+.weather{
+    color: white;
+    text-align: center;
+    font-size: 35px;
+}
+
+
+.text{
+    display: block;
+    margin-top: 20px;
+    margin-left: 15%;
+    margin-right: 15%;
+    color: white;
+}
+
+.text1{
+    float: left;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.text2{
+    float: right;
+    text-align: right;
+}
+
+#locat{
+    font-size: 10px;
+}
+
+.humidity,.press{
+    margin-top: 10px;
+}
+
+.container3{
+    height: 38%;
+    width: 100%;
+    
+}
+
+.title{
+    color: white;
+    font-size: 30px;
+    height: 20%;
+    margin: 0px 0px 0px 15px;
+}
+
+
+.content2{
+    height: 80%;
+    
+}
+
+.content2-1,.content2-2,.content2-3,.content2-4{
+    float: left;
+    width: calc(100%/4);
+    height: 100%;
+    color: white;
+    box-sizing: border-box;
+    padding-left: 5px;
+}
+
+.content2-1{
+    background-color: rgb(144, 172, 247);
+  
+     
+}
+
+.day{
+    padding-top: 20px;
+    font-size: 25px;
+}
+
+.icon-content2{
+    padding-top: 15px;
+}
+
+.temperature-content2{
+    padding-top: 10px;
+}
+
+.icon-content2{
+    font-size: 20px;
+}
+
+.temp_c{
+    float: left;
+    font-size: 20px;
+}
+
+.temp_c2{
+    float: left;
+    font-size: 12px;
+    opacity: 0.6;
+    padding-top: 8px;
+    padding-left: 5px;
+}
+
+.weather-content2{
+    padding-top: 10px;
+}
+
+.clr{
+    clear: both;
+}
