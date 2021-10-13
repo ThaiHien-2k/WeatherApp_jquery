@@ -78,7 +78,8 @@
     height: 65%;
     text-align: center;
     margin-top: 11px;
-    box-sizing: border-box;
+    box-sizing:unset;
+    border: unset;
     border-radius: 5px;
 }
 
@@ -130,6 +131,7 @@
     justify-content: center;
     padding: 5px;
     margin-top: 20px;
+    margin-right: 5px;
     color: yellow;
 }
 
@@ -142,6 +144,8 @@
 .tem_c{
     color: white;
 }
+
+
 
 .tem_f{
     color: white;
@@ -161,6 +165,10 @@
     margin-left: 15%;
     margin-right: 15%;
     color: white;
+}
+
+#locat{
+    margin-left: 5px;
 }
 
 .text1{

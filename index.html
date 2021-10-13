@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <link rel="stylesheet" href="D:\Rails Training\weatherApp\fontawesome-free-6.0.0-beta2-web/css/all.min.css" />
+    <!-- <script src="http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=caba72153195e76e835b0e35a82e4edb"></script> -->
+    <link rel="stylesheet" href="fontawesome-free-6.0.0-beta2-web/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeatherApp</title>
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,11 +22,12 @@
             <div class="clr"></div>
         </div>
         <div class="container2">
-            <p class="location">Cần Thơ, Việt Nam</p>
+            <p class="location"> <span></span></p>
             <div class="content1">
                 <div class="tem">
-                <div class="icon"><i class="fa-regular fa-sun"></i></div>
-                <div class="temperature">32°C</div>
+                <div class="icon"><i class="testicon"></i></div>
+                <div class="temperature"><span class="numb"></span>
+                </div>
                 <div class="swap_temperature">
                     <div class="tem_c">Độ C</div>
                     <div class="tem_f">Độ F</div>
@@ -35,12 +38,15 @@
             <div class="weather">Có nắng</div>
             <div class="text">
                 <div class="text1">
-                    <p class="tempe">Dễ chịu 42°C</p>
-                    <p class="press">Áp kế 10007.00mb</p>
+                    <p class="tempe">Dễ chịu 
+                        <span class="numb-2"></span>
+                        <span class="deg">°C</span>
+                    </p>
+                    <p class="press">Áp kế <span></span></p>
                 </div>
                 <div class="text2">
-                    <p class="wind-power">Gió <i id="locat" class="fa-solid fa-location-arrow"></i> 8 km/giờ  </p>
-                    <p class="humidity">Độ ẩm 75%</p>
+                    <p class="wind-power">Gió<i id="locat" class="fa-solid fa-location-arrow"></i>&nbsp;<span></span></p>
+                    <p class="humidity">Độ ẩm <span></span></p>
                 </div>
                 <div class="clr"></div>
             </div>
