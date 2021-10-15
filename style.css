@@ -232,12 +232,19 @@
 .icon-content2{
     padding-top: 15px;
 }
+.icon-content3{
+    padding-top: 15px;
+}
 
 .temperature-content2{
     padding-top: 10px;
 }
 
 .icon-content2{
+    color: yellow;
+    font-size: 20px;
+}
+.icon-content3{
     color: yellow;
     font-size: 20px;
 }

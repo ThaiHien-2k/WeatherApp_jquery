@@ -60,16 +60,16 @@ inputField.addEventListener("keyup", e =>{
     $.getJSON( "http://api.openweathermap.org/data/2.5/find?q="+inputField.value+"&appid=caba72153195e76e835b0e35a82e4edb", function( data ) {
 
         if(data.count == 1){
-            $('.icon-content2 > i').removeClass();
+            $('.icon-content3 > i').removeClass();
             $(".error2 , .error3, .error4 ").empty();
         }
         else if(data.count == 2 ){
-            $('.icon-content2 > i').removeClass();
+            $('.icon-content3 > i').removeClass();
             $(".error3, .error4 ").empty();
         }
       
         else if(data.count == 3){
-            $('.icon-content2 > i').removeClass();
+            $('.icon-content3 > i').removeClass();
             $(".error4 ").empty();
         }
         else ;
@@ -80,12 +80,12 @@ inputField.addEventListener("keyup", e =>{
     weatherPart2.querySelector(".content2-2 .weather-content2").innerText = weatherday2;    
     weatherPart2.querySelector(".content2-2 .temp_c span").innerText = Math.floor(tempday2 - 273.15)+"°C";
     weatherPart2.querySelector(".content2-2 .temp_c2 span").innerText = Math.floor(teminday2 - 273.15)+"°C";
-    $('.content2-2 .icon-content2 > i').removeClass();
+    $('.content2-2 .icon-content3 > i').removeClass();
     if((weatherPart2.querySelector(".content2-2 .temp_c span").innerText).slice(0,length-2) < 30){
-        $(".content2-2 .icon-content2 > i").toggleClass("error2 fa-solid fa-cloud");
+        $(".content2-2 .icon-content3 > i").toggleClass("error2 fa-solid fa-cloud");
     }
     else if((weatherPart2.querySelector(".content2-2 .temp_c span").innerText).slice(0,length-2) > 30){
-        $(".content2-2 .icon-content2 > i").toggleClass("error2 fa-regular fa-sun");}
+        $(".content2-2 .icon-content3 > i").toggleClass("error2 fa-regular fa-sun");}
 
 
     //o thu 3    
@@ -95,12 +95,12 @@ inputField.addEventListener("keyup", e =>{
     weatherPart2.querySelector(".content2-3 .weather-content2").innerText = weatherday3;    
     weatherPart2.querySelector(".content2-3 .temp_c span").innerText = Math.floor(tempday3 - 273.15)+"°C";
     weatherPart2.querySelector(".content2-3 .temp_c2 span").innerText = Math.floor(teminday3 - 273.15)+"°C";
-    $('.content2-3 .icon-content2 > i').removeClass();
+    $('.content2-3 .icon-content3 > i').removeClass();
     if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) < 30){
-        $(".content2-3 .icon-content2 > i").toggleClass("error3 fa-solid fa-cloud");
+        $(".content2-3 .icon-content3 > i").toggleClass("error3 fa-solid fa-cloud");
     }
     else if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) > 30){
-        $(".content2-3 .icon-content2 > i").toggleClass("error3 fa-regular fa-sun");}
+        $(".content2-3 .icon-content3 > i").toggleClass("error3 fa-regular fa-sun");}
 
         
      //o thu 4   
@@ -110,12 +110,12 @@ inputField.addEventListener("keyup", e =>{
      weatherPart2.querySelector(".content2-4 .weather-content2").innerText = weatherday4;    
      weatherPart2.querySelector(".content2-4 .temp_c span").innerText = Math.floor(tempday4 - 273.15)+"°C";
      weatherPart2.querySelector(".content2-4 .temp_c2 span").innerText = Math.floor(teminday4 - 273.15)+"°C";
-     $('.content2-4 .icon-content2 > i').removeClass();
+     $('.content2-4 .icon-content3 > i').removeClass();
      if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) < 30){
-         $(".content2-4 .icon-content2 > i").toggleClass("error4 fa-solid fa-cloud");
+         $(".content2-4 .icon-content3 > i").toggleClass("error4 fa-solid fa-cloud");
      }
      else if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) > 30){
-         $(".content2-4 .icon-content2 > i").toggleClass("error4 fa-regular fa-sun");}
+         $(".content2-4 .icon-content3 > i").toggleClass("error4 fa-regular fa-sun");}
         
   });
 
