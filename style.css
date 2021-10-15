@@ -218,6 +218,10 @@
     padding-left: 5px;
 }
 
+.content2-1,.content2-2,.content2-3,.content2-4,.search,.refresh :hover{
+    cursor: pointer;
+}
+
 .content2-1{
     background-color: rgb(144, 172, 247);
   

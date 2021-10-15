@@ -1,11 +1,11 @@
 
-$( ".content2 > .test" ).each(function(){
+$( ".content2 > .change_color" ).each(function(){
     $(this).click(function(){
     if($(this).css("background-color")==="rgb(144, 172, 247)"){
        
     }
     else{
-        $( ".content2 > .test" ).css("background-color","unset")
+        $( ".content2 > .change_color" ).css("background-color","unset")
         $(this).css("background-color","rgb(144, 172, 247)")
     }
     })
