@@ -12,7 +12,6 @@ $( ".content2 > .change_color" ).each(function(){
 
   });
 
-  //
 const wrapper = document.querySelector("#wrapper");
 const wIcon = document.querySelector("div.icon");
 const infoTxt = document.querySelector(".search-input");
@@ -58,7 +57,6 @@ inputField.addEventListener("keyup", e =>{
         requestApi(inputField.value);
 
     $.getJSON( "http://api.openweathermap.org/data/2.5/find?q="+inputField.value+"&appid=caba72153195e76e835b0e35a82e4edb", function( data ) {
-
         if(data.count == 1){
             $('.icon-content3 > i').removeClass();
             $(".error2 , .error3, .error4 ").empty();
