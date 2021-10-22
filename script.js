@@ -12,6 +12,8 @@ $( ".content2 > .change_color" ).each(function(){
 
   });
 
+
+
 const wrapper = document.querySelector("#wrapper");
 const wIcon = document.querySelector("div.icon");
 const infoTxt = document.querySelector(".search-input");
@@ -28,9 +30,8 @@ $(".search").click(function(){
         $(".search-input").focus();
     }
     else{
-        requestApi(inputField.value);
         $(".search-input").css("visibility","hidden");
-        
+       
     }
   });
 
@@ -39,42 +40,71 @@ $(".search").click(function(){
       if($(".search-input").innerText==undefined){
         
         $(".search-input").css("visibility","hidden");
-        requestApi(inputField.value); 
     }  
 });  
 
 
-  $('.refresh').click(function() {
-    let a =(weatherPart.querySelector(".location span").innerText).slice(0,length-4);
-    requestApi(a);
-});
-
-
-let api;
 
 inputField.addEventListener("keyup", e =>{
-    if(e.key == "Enter" && inputField.value != ""){
-        requestApi(inputField.value);
+ if(e.key == "Enter" && inputField.value != ""){
+    $('.refresh').click(function() {
+        inputField.value= (weatherPart.querySelector(".location span").innerText).slice(0,length-4);
+    });
+     $.ajax({
+            url:  "https://api.openweathermap.org/data/2.5/weather?q="+inputField.value+"&appid=caba72153195e76e835b0e35a82e4edb",
+            dataType: 'json',
+            success: function(data){
+                //big temp
+            var city = data.name;
+            var country = data.sys.country;
+            var description= data.weather[0].description;
+            var { feels_like, humidity,pressure} = data.main;
+            var {speed} = data.wind;
+         
+       
+           
+            weatherPart.querySelector(".weather").innerText = description;
+            weatherPart.querySelector(".location span").innerText = `${city}, ${country}`;
+            weatherPart.querySelector(".tempe span").innerText = Math.floor(feels_like- 273.15)+"°C";
+            weatherPart.querySelector(".humidity span").innerText = `${humidity}%`;
+            weatherPart.querySelector(".wind-power span").innerText = `${speed} km/h`;
+            weatherPart.querySelector(".press span").innerText = `${pressure} mb`;
+                const lat = data.coord.lat;
+                const lon = data.coord.lon;
 
-    $.getJSON( "http://api.openweathermap.org/data/2.5/find?q="+inputField.value+"&appid=caba72153195e76e835b0e35a82e4edb", function( data ) {
-        if(data.count == 1){
-            $('.icon-content3 > i').removeClass();
-            $(".error2 , .error3, .error4 ").empty();
+                if((weatherPart.querySelector(".temperature span").innerText).slice(0,length-2) < 30){
+                    $(".icon > i").toggleClass("fa-solid fa-cloud");
+                }
+                else if((weatherPart.querySelector(".temperature span").innerText).slice(0,length-2) >= 30)
+                    $(".icon > i").toggleClass("fa-regular fa-sun");    
+     $.getJSON( "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid=caba72153195e76e835b0e35a82e4edb", function( data ) {
+   
+    //o thu nhat
+    var tempday1 = data.daily[0].temp.day;
+    var teminday1 = data.daily[0].temp.min;
+    var weatherday1 = data.daily[0].weather[0].main;              
+    weatherPart2.querySelector(".content2-1 .weather-content2").innerText = weatherday1;    
+    weatherPart2.querySelector(".temp_c span").innerText =Math.floor(tempday1 - 273.15)+"°C";
+    weatherPart2.querySelector(".temp_c2 span").innerText =Math.floor(teminday1 - 273.15)+"°C";
+        $('.content2-1 .icon-content2 > i').removeClass();
+        if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) < 30){
+            $(".content2-1 .icon-content2 > i").toggleClass("fa-solid fa-cloud");
         }
-        else if(data.count == 2 ){
-            $('.icon-content3 > i').removeClass();
-            $(".error3, .error4 ").empty();
-        }
-      
-        else if(data.count == 3){
-            $('.icon-content3 > i').removeClass();
-            $(".error4 ").empty();
-        }
-        else ;
+        else if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) >= 30){
+            $(".content2-1 .icon-content2 > i").toggleClass("fa-regular fa-sun");}
+    //temp lon
+    weatherPart.querySelector(".temperature span").innerText = Math.floor(tempday1 - 273.15)+"°C";
+    $('.icon > i').removeClass();
+    if((weatherPart.querySelector(".temperature span").innerText).slice(0,length-2) < 30){
+        $(".icon > i").toggleClass("fa-solid fa-cloud");
+    }
+    else if((weatherPart.querySelector(".temperature span").innerText).slice(0,length-2) >= 30)
+        $(".icon > i").toggleClass("fa-regular fa-sun");
+        
     //o thu 2
-    var tempday2 = data.list[1].main.temp;
-    var teminday2 = data.list[1].main.temp_min;
-    var weatherday2 = data.list[1].weather[0].description;
+    var tempday2 = data.daily[1].temp.day;
+    var teminday2 = data.daily[1].temp.min;
+    var weatherday2 = data.daily[1].weather[0].main;
     weatherPart2.querySelector(".content2-2 .weather-content2").innerText = weatherday2;    
     weatherPart2.querySelector(".content2-2 .temp_c span").innerText = Math.floor(tempday2 - 273.15)+"°C";
     weatherPart2.querySelector(".content2-2 .temp_c2 span").innerText = Math.floor(teminday2 - 273.15)+"°C";
@@ -82,14 +112,14 @@ inputField.addEventListener("keyup", e =>{
     if((weatherPart2.querySelector(".content2-2 .temp_c span").innerText).slice(0,length-2) < 30){
         $(".content2-2 .icon-content3 > i").toggleClass("error2 fa-solid fa-cloud");
     }
-    else if((weatherPart2.querySelector(".content2-2 .temp_c span").innerText).slice(0,length-2) > 30){
+    else if((weatherPart2.querySelector(".content2-2 .temp_c span").innerText).slice(0,length-2) >= 30){
         $(".content2-2 .icon-content3 > i").toggleClass("error2 fa-regular fa-sun");}
 
 
     //o thu 3    
-    var tempday3 = data.list[2].main.temp;
-    var teminday3 = data.list[2].main.temp_min;
-    var weatherday3 = data.list[2].weather[0].description;
+    var tempday3 = data.daily[2].temp.day;
+    var teminday3 = data.daily[2].temp.min;
+    var weatherday3 = data.daily[2].weather[0].main;
     weatherPart2.querySelector(".content2-3 .weather-content2").innerText = weatherday3;    
     weatherPart2.querySelector(".content2-3 .temp_c span").innerText = Math.floor(tempday3 - 273.15)+"°C";
     weatherPart2.querySelector(".content2-3 .temp_c2 span").innerText = Math.floor(teminday3 - 273.15)+"°C";
@@ -97,14 +127,14 @@ inputField.addEventListener("keyup", e =>{
     if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) < 30){
         $(".content2-3 .icon-content3 > i").toggleClass("error3 fa-solid fa-cloud");
     }
-    else if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) > 30){
+    else if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) >= 30){
         $(".content2-3 .icon-content3 > i").toggleClass("error3 fa-regular fa-sun");}
 
         
      //o thu 4   
-     var tempday4 = data.list[3].main.temp;
-     var teminday4 = data.list[3].main.temp_min;
-     var weatherday4 = data.list[3].weather[0].description;
+     var tempday4 = data.daily[3].temp.day;
+     var teminday4 = data.daily[3].temp.min;
+     var weatherday4 = data.daily[3].weather[0].main;
      weatherPart2.querySelector(".content2-4 .weather-content2").innerText = weatherday4;    
      weatherPart2.querySelector(".content2-4 .temp_c span").innerText = Math.floor(tempday4 - 273.15)+"°C";
      weatherPart2.querySelector(".content2-4 .temp_c2 span").innerText = Math.floor(teminday4 - 273.15)+"°C";
@@ -112,96 +142,92 @@ inputField.addEventListener("keyup", e =>{
      if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) < 30){
          $(".content2-4 .icon-content3 > i").toggleClass("error4 fa-solid fa-cloud");
      }
-     else if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) > 30){
+     else if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) >= 30){
          $(".content2-4 .icon-content3 > i").toggleClass("error4 fa-regular fa-sun");}
         
-  });
+        // swap small temp
+         $(".tem_f").click(function(){
+            $(".tem_f").css("opacity","unset")
+            $(".tem_c").css("opacity","0.6")
+            weatherPart.querySelector(".temperature span").innerText = Math.floor((tempday1 - 273.15)* 1.8000+ 32)+"°F";
+            weatherPart2.querySelector(".temp_c span").innerText =Math.floor((tempday1 - 273.15)* 1.8000+ 32)+"°F";
+            weatherPart2.querySelector(".temp_c2 span").innerText =Math.floor((teminday1 - 273.15)* 1.8000+ 32)+"°F";
+            weatherPart2.querySelector(".content2-2 .temp_c span").innerText = Math.floor((tempday2 - 273.15)* 1.8000+ 32)+"°F";
+            weatherPart2.querySelector(".content2-2 .temp_c2 span").innerText = Math.floor((teminday2 - 273.15)* 1.8000+ 32)+"°F";
+            weatherPart2.querySelector(".content2-3 .temp_c span").innerText = Math.floor((tempday3 - 273.15)* 1.8000+ 32)+"°F";
+            weatherPart2.querySelector(".content2-3 .temp_c2 span").innerText = Math.floor((teminday3 - 273.15)* 1.8000+ 32)+"°F";
+            weatherPart2.querySelector(".content2-4 .temp_c span").innerText = Math.floor((tempday4 - 273.15)* 1.8000+ 32)+"°F";
+            weatherPart2.querySelector(".content2-4 .temp_c2 span").innerText = Math.floor((teminday4 - 273.15)* 1.8000+ 32)+"°F";  
+          })
+        
+          $(".tem_c").click(function(){
+            $(".tem_c").css("opacity","unset")
+            $(".tem_f").css("opacity","0.6")
+            weatherPart.querySelector(".temperature span").innerText = Math.floor(tempday1 - 273.15)+"°C";
+            weatherPart2.querySelector(".temp_c span").innerText =Math.floor(tempday1 - 273.15)+"°C";
+            weatherPart2.querySelector(".temp_c2 span").innerText =Math.floor(teminday1 - 273.15)+"°C";
+            weatherPart2.querySelector(".content2-2 .temp_c span").innerText = Math.floor(tempday2 - 273.15)+"°C";
+            weatherPart2.querySelector(".content2-2 .temp_c2 span").innerText = Math.floor(teminday2 - 273.15)+"°C";
+            weatherPart2.querySelector(".content2-3 .temp_c span").innerText = Math.floor(tempday3 - 273.15)+"°C";
+            weatherPart2.querySelector(".content2-3 .temp_c2 span").innerText = Math.floor(teminday3 - 273.15)+"°C";
+            weatherPart2.querySelector(".content2-4 .temp_c span").innerText = Math.floor(tempday4 - 273.15)+"°C";
+            weatherPart2.querySelector(".content2-4 .temp_c2 span").innerText = Math.floor(teminday4 - 273.15)+"°C"; 
+            
 
-    }
-});
-
-
-function requestApi(city){
-    api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=caba72153195e76e835b0e35a82e4edb`;
-    fetchData();
-}
-
-function onSuccess(position){
-    const {latitude, longitude} = position.coords;
-    api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=caba72153195e76e835b0e35a82e4edb`;
-    fetchData();
-}
-
-function onError(error){
-    infoTxt.innerText = error.message;
-    infoTxt.classList.add("error");
-}
-
-function fetchData(){
-    infoTxt.classList.add("pending");
-    fetch(api).then(res => res.json()).then(result => weatherDetails(result)).catch(() =>{
-        infoTxt.classList.replace("pending", "error");
-    });
-}
-
-
-
-function weatherDetails(info){
-    if(info.cod == "404"){
-        infoTxt.classList.replace("pending", "error");
-        weatherPart.querySelector(".location span").innerText  = `${inputField.value} isn't a valid city name`;
-    }else{
-        const city = info.name;
-        const country = info.sys.country;
-        const {description, id} = info.weather[0];
-        const {temp, feels_like, humidity,pressure,temp_min} = info.main;
-        const {speed} = info.wind;
-
-        //olon
-        weatherPart.querySelector(".temperature span").innerText = Math.floor(temp)+"°C";
-        weatherPart.querySelector(".weather").innerText = description;
-        weatherPart.querySelector(".location span").innerText = `${city}, ${country}`;
-        weatherPart.querySelector(".tempe span").innerText = Math.floor(feels_like);
-        weatherPart.querySelector(".humidity span").innerText = `${humidity}%`;
-        weatherPart.querySelector(".wind-power span").innerText = `${speed} km/h`;
-        weatherPart.querySelector(".press span").innerText = `${pressure} mb`;
-        infoTxt.classList.remove("pending", "error");
-        infoTxt.innerText = "";
-        inputField.value = "";
-        wrapper.classList.add("active");
-        $('.icon > i').removeClass();
-        if((weatherPart.querySelector(".temperature span").innerText).slice(0,length-2) < 30){
-            $(".icon > i").toggleClass("fa-solid fa-cloud");
-        }
-        else if((weatherPart.querySelector(".temperature span").innerText).slice(0,length-2) > 30)
-            $(".icon > i").toggleClass("fa-regular fa-sun");
-
-
-        //o thu nhat
-        weatherPart2.querySelector(".content2-1 .weather-content2").innerText = description;    
-        weatherPart2.querySelector(".temp_c span").innerText = Math.floor(temp)+"°C";
-        weatherPart2.querySelector(".temp_c2 span").innerText = Math.floor(temp_min)+"°C";
-        $('.content2-1 .icon-content2 > i').removeClass();
-        if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) < 30){
-            $(".content2-1 .icon-content2 > i").toggleClass("fa-solid fa-cloud");
-        }
-        else if((weatherPart2.querySelector(".temp_c span").innerText).slice(0,length-2) > 30){
-            $(".content2-1 .icon-content2 > i").toggleClass("fa-regular fa-sun");}
+          })
           
-    
+                 });
+            }
+           
+        })     
+        error: {
+            weatherPart.querySelector(".location span").innerText  = `${inputField.value} isn't a valid city name`;
+            weatherPart.querySelector(".temperature span").innerText = "";
+            weatherPart.querySelector(".weather").innerText =  "";
+            weatherPart.querySelector(".tempe span").innerText = "";
+            weatherPart.querySelector(".humidity span").innerText = "";
+            weatherPart.querySelector(".wind-power span").innerText =  "";
+            weatherPart.querySelector(".press span").innerText =  "";
+            weatherPart2.querySelector(".content2-4 .weather-content2").innerText = "";    
+            weatherPart2.querySelector(".content2-4 .temp_c span").innerText = "";
+            weatherPart2.querySelector(".content2-4 .temp_c2 span").innerText = "";
+            weatherPart2.querySelector(".content2-3 .weather-content2").innerText = "";    
+            weatherPart2.querySelector(".content2-3 .temp_c span").innerText = "";
+            weatherPart2.querySelector(".content2-3 .temp_c2 span").innerText = "";
+            weatherPart2.querySelector(".content2-2 .weather-content2").innerText = "";    
+            weatherPart2.querySelector(".content2-2 .temp_c span").innerText = "";
+            weatherPart2.querySelector(".content2-2 .temp_c2 span").innerText = "";
+            weatherPart2.querySelector(".content2-1 .weather-content2").innerText = "";    
+            weatherPart2.querySelector(".content2-1 .temp_c span").innerText ="";
+            weatherPart2.querySelector(".content2-1 .temp_c2 span").innerText = "";
+            $('.content2-3 .icon-content3 > i').removeClass();
+            $('.content2-2 .icon-content3 > i').removeClass();
+            $('.content2-4 .icon-content3 > i').removeClass();
+            $('.content2-1 .icon-content2 > i').removeClass();
+            $('.icon > i').removeClass();
+        }
+        done: {  
+        inputField.value="";
     }
-}
+    }
 
-
-
-
-
-
-
-
-$(document).ready(function() {
-    requestApi("can tho");
+    
 });
+ 
+window.addEventListener("keyup", (e) => {
+    if(e.key == "Enter"){
+        if(($(".search-input").css("visibility")) === "hidden"){
+            $(".search-input").css("visibility","unset");
+            $(".search-input").focus();
+        }
+        else{
+            $(".search-input").css("visibility","hidden");
+           
+        }   
+}
+});
+
+
 
 
 
@@ -216,15 +242,25 @@ var b= (days[day.getDay()+1]);
 var c= (days[day.getDay()+2]); 
 var d= (days[day.getDay()+3]); 
 
+var nextDay = new Date(day);
+nextDay.setDate(day.getDate() + 1);
+var next2Day = new Date(day);
+next2Day.setDate(day.getDate() + 2);
+var next3Day = new Date(day);
+next3Day.setDate(day.getDate() + 3);
+
 
 var datetime =  a.substring(0,3) + " " + day.getDate()
-var datetime2 = b.substring(0,3) + " "+ (day.getDate() + 1);
-var datetime3 = c.substring(0,3) + " "+  (day.getDate() + 2);
-var datetime4 = d.substring(0,3) + " "+ (day.getDate() + 3);
+var datetime2 = b.substring(0,3) + " "+ nextDay.getDate();
+var datetime3 = c.substring(0,3) + " "+ next2Day.getDate();
+var datetime4 = d.substring(0,3) + " "+ next3Day.getDate();
+
 
 weatherPart2.querySelector(".content2-1 span").innerText =  datetime;
 weatherPart2.querySelector(".content2-2 span").innerText =  datetime2;
 weatherPart2.querySelector(".content2-3 span").innerText =  datetime3;
 weatherPart2.querySelector(".content2-4 span").innerText =  datetime4;
+
+
 
 

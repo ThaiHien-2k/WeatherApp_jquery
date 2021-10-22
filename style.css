@@ -4,14 +4,18 @@
     padding:0;
 }
 
+body{
+    line-height: unset;
+}
 
 #wrapper{
+    height: unset;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     height: 600px;
-    width: 400px;
+    width: 450px;
     background: linear-gradient(225deg, rgb(135, 163, 192) 0%, rgb(57, 120, 197) 25%,rgb(135, 163, 192) 265%);
 }
 
@@ -40,15 +44,16 @@
 
 .container1 p{
     font-weight: bold;
-    margin-top: 17px;
+    margin-top: 12px;
     margin-left: 5px;
 
     font-size: 23px;
     color: white;
+    margin-bottom: unset;
 }
 
 .search{
-    margin-top: 1.5px;
+    margin-top: 4px;
     font-size: 20px;
     width: 10%;
     height: 95%;
@@ -84,7 +89,7 @@
 }
 
 .refresh{
-    margin-top: 1.5px;
+    margin-top: 4px;
     font-size: 20px;
     width: 10%;
     height: 95%;
@@ -108,10 +113,10 @@
     color: white;
     font-size: 25px;
 }
-
 .temperature{
     color: white;
     font-size: 90px;
+    width: 175px;
 }
 
 .icon,.temperature,.swap_temperature{
@@ -143,6 +148,7 @@
 
 .tem_c{
     color: white;
+    cursor: pointer;
 }
 
 
@@ -150,6 +156,7 @@
 .tem_f{
     color: white;
     opacity: 0.6;
+    cursor: pointer;
 }
 
 .weather{
@@ -199,7 +206,6 @@
 .title{
     color: white;
     font-size: 30px;
-    height: 20%;
     margin: 0px 0px 0px 15px;
 }
 
@@ -210,12 +216,16 @@
 }
 
 .content2-1,.content2-2,.content2-3,.content2-4{
+    margin-top: 20px;
     float: left;
-    width: calc(100%/4);
-    height: 100%;
+    width: calc((100%/4));
+    height: 170px;
     color: white;
     box-sizing: border-box;
     padding-left: 5px;
+    padding-right: 5px;
+
+
 }
 
 .content2-1,.content2-2,.content2-3,.content2-4,.search,.refresh :hover{
@@ -229,7 +239,7 @@
 }
 
 .day{
-    padding-top: 20px;
+    /* padding-top: 20px; */
     font-size: 25px;
 }
 
@@ -268,6 +278,10 @@
 
 .weather-content2{
     padding-top: 10px;
+}
+
+p{
+    margin-bottom: unset;
 }
 
 .clr{
